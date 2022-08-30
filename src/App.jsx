@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Container, Group, Stepper } from '@mantine/core';
-import { StepFirst } from './components';
+import { StepFirst, StepSecond } from './components';
 
 function App() {
   const [active, setActive] = useState(0);
