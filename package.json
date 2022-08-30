@@ -12,6 +12,9 @@
     "format": "prettier --write './**/*.{js,jsx,css}' --config ./.prettierrc"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.0",
+    "@mantine/core": "^5.2.4",
+    "@mantine/hooks": "^5.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
