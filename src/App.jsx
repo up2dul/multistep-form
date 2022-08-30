@@ -13,6 +13,15 @@ function App() {
         <Stepper.Step label='First step' description='Your name and gender'>
           <StepFirst />
         </Stepper.Step>
+        <Stepper.Step label='Second step' description='Create an account'>
+          <StepSecond />
+        </Stepper.Step>
+        <Stepper.Step label='Third step' description='Your details'>
+          Step 3
+        </Stepper.Step>
+        <Stepper.Step label='Final step' description='Get full access'>
+          Step 4 content: Get full access
+        </Stepper.Step>
         <Stepper.Completed>Completed, click back button to get to previous step</Stepper.Completed>
       </Stepper>
 
