@@ -1,4 +1,4 @@
-import { Container, MultiSelect, Select, Textarea, Title } from '@mantine/core';
+import { Container, MultiSelect, Radio, Textarea, Title } from '@mantine/core';
 
 const sourceSelect = [
   'Family',
@@ -17,28 +17,34 @@ export function StepThird() {
       <Title order={2} mb={25}>
         🧑 Tell us more about you
       </Title>
-      <Select
+      <Radio.Group
         mb={25}
-        data={['Newbie', 'Beginner', 'Intermediate', 'Advanced', 'Expert']}
+        orientation='vertical'
         label='Expertise level in web development'
-        placeholder='Pick one'
-        withAsterisk
-      />
-      <Select
+        withAsterisk>
+        <Radio value='newbie' label='Newbie' />
+        <Radio value='beginner' label='beginner' />
+        <Radio value='intermediate' label='intermediate' />
+        <Radio value='advanced' label='advanced' />
+        <Radio value='expert' label='expert' />
+      </Radio.Group>
+      <Radio.Group mb={25} orientation='vertical' label='Focus on web development' withAsterisk>
+        <Radio value='frontend' label='Frontend' />
+        <Radio value='backend' label='Backend' />
+        <Radio value='fullstack' label='Full stack' />
+        <Radio value='i dont know yet' label="I don't know yet" />
+      </Radio.Group>
+      <Radio.Group
         mb={25}
-        data={['Frontend', 'Backend', 'Full stack', "I don't know yet"]}
-        label='Focus on web development'
-        placeholder='Pick one'
-        withAsterisk
-      />
-      <Select
-        mb={25}
-        data={['Fresh graduate', '1 year', '2-4 years', 'More than 4 years']}
+        orientation='vertical'
         label='Work experience'
-        placeholder='Pick one'
         description="Select Fresh graduate if you don't have work experience"
-        withAsterisk
-      />
+        withAsterisk>
+        <Radio value='fresh graduate' label='Fresh graduate' />
+        <Radio value='1 year' label='1 year' />
+        <Radio value='2-4 years' label='2-4 years' />
+        <Radio value='more than 4 years' label='More than 4 years' />
+      </Radio.Group>
       <MultiSelect
         mb={25}
         data={[

@@ -1,4 +1,4 @@
-import { Container, Group, NumberInput, Select, TextInput, Title } from '@mantine/core';
+import { Container, Group, NumberInput, Radio, TextInput, Title } from '@mantine/core';
 
 export function StepSecond() {
   return (
@@ -6,18 +6,17 @@ export function StepSecond() {
       <Title order={2} mb={25}>
         👋 Hi Guntur, <br /> Let us know about your info and contact
       </Title>
-      <Group grow>
-        <Select
-          mb={25}
-          label='Gender'
-          placeholder='Pick one'
-          data={[
-            { value: 'male', label: 'Male' },
-            { value: 'female', label: 'Female' }
-          ]}
+      <Group mb={25} grow>
+        <Radio.Group label='Gender' withAsterisk>
+          <Radio value='male' label='Male' />
+          <Radio value='female' label='Female' />
+        </Radio.Group>
+        <NumberInput
+          label='Age'
+          placeholder='18 - 27'
+          description='Your current age'
           withAsterisk
         />
-        <NumberInput mb={25} label='Age' placeholder='18 - 27' withAsterisk />
       </Group>
       <TextInput
         mb={25}
