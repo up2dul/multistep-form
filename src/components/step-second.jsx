@@ -4,7 +4,7 @@ export function StepSecond() {
   return (
     <Container mt={30} size='xs'>
       <Title order={2} mb={25}>
-        👋 Hi Thomas, <br /> Let us know about your info and contact
+        👋 Hi Guntur, <br /> Let us know about your info and contact
       </Title>
       <Group grow>
         <Select
@@ -36,18 +36,18 @@ export function StepSecond() {
       <TextInput
         mb={25}
         label='Email address'
-        placeholder='e.g. thomas82@gmail.com'
+        placeholder='e.g. guntur@gmail.com'
         description='Must be an active email'
         withAsterisk
       />
       <TextInput
         mb={25}
         label='Personal website'
-        placeholder='e.g. https://thomas82.com'
+        placeholder='e.g. https://guntur.com'
         description='Optional, but it would be better if you had one'
       />
-      <TextInput mb={25} label='Github URL' placeholder='e.g. https://github.com/thomas82' />
-      <TextInput mb={25} label='Linkedin URL' placeholder='e.g. https://linkedin.com/in/thomas82' />
+      <TextInput mb={25} label='Github URL' placeholder='e.g. https://github.com/guntur' />
+      <TextInput mb={25} label='Linkedin URL' placeholder='e.g. https://linkedin.com/in/guntur' />
     </Container>
   );
 }
