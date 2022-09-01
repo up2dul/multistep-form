@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Container, Group, Stepper } from '@mantine/core';
 import { StepFirst, StepSecond, StepThird } from './components';
 
@@ -6,6 +6,10 @@ function App() {
   const [active, setActive] = useState(0);
   const nextStep = () => setActive((current) => (current < 4 ? current + 1 : current));
   const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [active]);
 
   return (
     <Container my={60}>
