@@ -1,15 +1,11 @@
-import { Container, MultiSelect, Select, Textarea, Title } from '@mantine/core';
-
-const sourceSelect = [
-  'Family',
-  'Friends',
-  'Facebook',
-  'Instagram',
-  'Linkedin',
-  'Twitter',
-  'Website',
-  'Other'
-];
+import { Container, FileInput, MultiSelect, Radio, Textarea, Title } from '@mantine/core';
+import {
+  levelList,
+  stackList,
+  experienceList,
+  learnList,
+  sourcesInfoList
+} from '@/utils/input-options';
 
 export function StepThird() {
   return (
@@ -17,52 +13,50 @@ export function StepThird() {
       <Title order={2} mb={25}>
         🧑 Tell us more about you
       </Title>
-      <Select
+      <Radio.Group
         mb={25}
-        data={['Newbie', 'Beginner', 'Intermediate', 'Advanced', 'Expert']}
+        orientation='vertical'
         label='Expertise level in web development'
-        placeholder='Pick one'
-        withAsterisk
-      />
-      <Select
+        withAsterisk>
+        {levelList.map((level, idx) => (
+          <Radio key={idx} value={level} label={level} />
+        ))}
+      </Radio.Group>
+      <Radio.Group
         mb={25}
-        data={['Frontend', 'Backend', 'Full stack', "I don't know yet"]}
-        label='Focus on web development'
-        placeholder='Pick one'
-        withAsterisk
-      />
-      <Select
+        orientation='vertical'
+        label='Focus stack on web development'
+        withAsterisk>
+        {stackList.map((stack, idx) => (
+          <Radio key={idx} value={stack} label={stack} />
+        ))}
+      </Radio.Group>
+      <Radio.Group mb={25} orientation='vertical' label='Work experience' withAsterisk>
+        {experienceList.map((experience, idx) => (
+          <Radio key={idx} value={experience} label={experience} />
+        ))}
+      </Radio.Group>
+      <FileInput
         mb={25}
-        data={['Fresh graduate', '1 year', '2-4 years', 'More than 4 years']}
-        label='Work experience'
-        placeholder='Pick one'
-        description="Select Fresh graduate if you don't have work experience"
-        withAsterisk
+        label='Upload your Resume/CV'
+        placeholder='Upload here'
+        description='Optional. Can be in PDF or any other format file'
       />
       <MultiSelect
         mb={25}
-        data={[
-          'Autodidact',
-          'Bootcamp',
-          'Formal education',
-          'Mentorship',
-          'Self-learning',
-          'Other'
-        ]}
+        data={learnList}
         label='How did you learn to code and programming before?'
+        placeholder='Pick here'
         description='You can choose more than 1'
-        nothingFound='Nothing found'
         withAsterisk
-        searchable
       />
       <MultiSelect
         mb={25}
-        data={sourceSelect}
+        data={sourcesInfoList}
         label='Where did you know about this bootcamp?'
+        placeholder='Pick here'
         description='You can choose more than 1'
-        nothingFound='Nothing found'
         withAsterisk
-        searchable
       />
       <Textarea
         mb={25}
@@ -70,7 +64,11 @@ export function StepThird() {
         description='Explain briefly and clearly'
         withAsterisk
       />
-      <Textarea mb={25} label='Do you have any question or feedback about this bootcamp?' />
+      <Textarea
+        mb={25}
+        label='Do you have any question or feedback?'
+        description='Must be related to this bootcamp'
+      />
     </Container>
   );
 }
