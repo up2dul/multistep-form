@@ -1,4 +1,5 @@
 import { Container, Group, NumberInput, Radio, TextInput, Title } from '@mantine/core';
+import { DatePicker } from '@mantine/dates';
 
 export function StepSecond() {
   return (
@@ -7,16 +8,11 @@ export function StepSecond() {
         👋 Hi Guntur, <br /> Let us know about your info and contact
       </Title>
       <Group mb={25} grow>
-        <Radio.Group label='Gender' withAsterisk>
+        <Radio.Group label='Gender' orientation='vertical' withAsterisk>
           <Radio value='male' label='Male' />
           <Radio value='female' label='Female' />
         </Radio.Group>
-        <NumberInput
-          label='Age'
-          placeholder='18 - 27'
-          description='Your current age'
-          withAsterisk
-        />
+        <DatePicker label='Birth date' placeholder='Pick date' dropdownType='modal' withAsterisk />
       </Group>
       <TextInput
         mb={25}
