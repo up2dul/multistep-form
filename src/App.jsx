@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Button, Container, Group, Stepper } from '@mantine/core';
-import { StepFirst, StepSecond, StepThird } from './components';
+import { StepCompleted, StepFirst, StepSecond, StepThird } from './components';
 
 function App() {
   const [active, setActive] = useState(0);
@@ -23,10 +23,9 @@ function App() {
         <Stepper.Step label='Third step' description='More about you'>
           <StepThird />
         </Stepper.Step>
-        <Stepper.Step label='Final step' description='Get full access'>
-          Step 3 content: Get full access
-        </Stepper.Step>
-        <Stepper.Completed>Completed, click back button to get to previous step</Stepper.Completed>
+        <Stepper.Completed>
+          <StepCompleted />
+        </Stepper.Completed>
       </Stepper>
 
       <Group position='center' mt={50}>
@@ -35,7 +34,7 @@ function App() {
             Back
           </Button>
         )}
-        <Button onClick={nextStep}>Next</Button>
+        <Button onClick={nextStep}>{active === 3 ? 'Submit' : 'Next'}</Button>
       </Group>
     </Container>
   );
