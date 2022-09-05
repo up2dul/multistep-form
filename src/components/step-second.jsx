@@ -1,5 +1,14 @@
 import { Container, Group, NumberInput, Radio, TextInput, Title } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
+import {
+  IoCalendarNumber,
+  IoHome,
+  IoCall,
+  IoMail,
+  IoGlobeOutline,
+  IoLogoGithub,
+  IoLogoLinkedin
+} from 'react-icons/io5';
 
 export function StepSecond() {
   return (
@@ -12,16 +21,24 @@ export function StepSecond() {
           <Radio value='male' label='Male' />
           <Radio value='female' label='Female' />
         </Radio.Group>
-        <DatePicker label='Birth date' placeholder='Pick date' dropdownType='modal' withAsterisk />
+        <DatePicker
+          icon={<IoCalendarNumber />}
+          label='Birth date'
+          placeholder='Pick date'
+          dropdownType='modal'
+          withAsterisk
+        />
       </Group>
       <TextInput
         mb={25}
+        icon={<IoHome />}
         label='City and Country'
         placeholder='e.g. Bandung, Indonesia'
         withAsterisk
       />
       <NumberInput
         mb={25}
+        icon={<IoCall />}
         label='Phone number'
         placeholder='e.g. +62-888-1234-1234'
         description='Preferably that is used for Telegram/WhatsApp'
@@ -30,6 +47,7 @@ export function StepSecond() {
       />
       <TextInput
         mb={25}
+        icon={<IoMail />}
         label='Email address'
         placeholder='e.g. guntur@gmail.com'
         description='Must be an active email'
@@ -37,12 +55,23 @@ export function StepSecond() {
       />
       <TextInput
         mb={25}
+        icon={<IoGlobeOutline />}
         label='Personal website'
         placeholder='e.g. https://guntur.com'
         description='Optional, but it would be better if you had one'
       />
-      <TextInput mb={25} label='Github URL' placeholder='e.g. https://github.com/guntur' />
-      <TextInput mb={25} label='Linkedin URL' placeholder='e.g. https://linkedin.com/in/guntur' />
+      <TextInput
+        mb={25}
+        icon={<IoLogoGithub />}
+        label='Github URL'
+        placeholder='e.g. https://github.com/guntur'
+      />
+      <TextInput
+        mb={25}
+        icon={<IoLogoLinkedin />}
+        label='Linkedin URL'
+        placeholder='e.g. https://linkedin.com/in/guntur'
+      />
     </Container>
   );
 }

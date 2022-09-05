@@ -6,12 +6,13 @@ import {
   learnList,
   sourcesInfoList
 } from '@/utils/input-options';
+import { IoFileTray } from 'react-icons/io5';
 
 export function StepThird() {
   return (
     <Container mt={30} size='xs'>
       <Title order={2} mb={25}>
-        🧑 Tell us more about you
+        The last one, <br /> 🧑 Tell us more about you
       </Title>
       <Radio.Group
         mb={25}
@@ -38,6 +39,7 @@ export function StepThird() {
       </Radio.Group>
       <FileInput
         mb={25}
+        icon={<IoFileTray />}
         label='Upload your Resume/CV'
         placeholder='Upload here'
         description='Optional. Can be in PDF or any other format file'
