@@ -1,19 +1,19 @@
-import { useEffect, useState } from 'react';
-import { Button, Container, Group, Stepper } from '@mantine/core';
-import { StepCompleted, StepFirst, StepSecond, StepThird } from './components';
+import { useEffect } from 'react';
+import { Container, Stepper } from '@mantine/core';
+
+import { useStepStore } from '@/stores';
+import { StepCompleted, StepFirst, StepSecond, StepThird } from '@/components';
 
 function App() {
-  const [active, setActive] = useState(0);
-  const nextStep = () => setActive((current) => (current < 4 ? current + 1 : current));
-  const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
+  const { step } = useStepStore((state) => state);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [active]);
+  }, [step]);
 
   return (
     <Container my={60}>
-      <Stepper active={active} breakpoint='sm'>
+      <Stepper active={step} breakpoint='sm'>
         <Stepper.Step label='First step' description='Your name'>
           <StepFirst />
         </Stepper.Step>
@@ -27,15 +27,6 @@ function App() {
           <StepCompleted />
         </Stepper.Completed>
       </Stepper>
-
-      <Group position='center' mt={50}>
-        {active > 0 && (
-          <Button variant='default' onClick={prevStep}>
-            Back
-          </Button>
-        )}
-        <Button onClick={nextStep}>{active === 3 ? 'Submit' : 'Next'}</Button>
-      </Group>
     </Container>
   );
 }
