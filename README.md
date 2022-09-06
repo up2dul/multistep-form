@@ -1,5 +1,6 @@
 ### TODO
 
 - [x] UI (User Interface)
-- [ ] Implement react-hook-form
+- [ ] State management using zustand
+- [ ] Apply react-hook-form to all input form
 - [ ] Validation using Yup
