@@ -6,6 +6,7 @@ import {
   IoLogoLinkedin,
   IoMail
 } from 'react-icons/io5';
+import { learnList, sourcesInfoList } from '@/utils';
 
 export const firstTextList = [
   {
@@ -63,5 +64,60 @@ export const secondTextList = [
     icon: <IoLogoLinkedin />,
     label: 'Linkedin URL',
     placeholder: 'e.g. https://linkedin.com/in/guntur'
+  }
+];
+
+export const thirdRadioList = [
+  {
+    name: 'level',
+    orientation: 'vertical',
+    label: 'Expertise level in web development',
+    withAsterisk: true
+  },
+  {
+    name: 'stack',
+    orientation: 'vertical',
+    label: 'Focus stack on web development',
+    withAsterisk: true
+  },
+  {
+    name: 'experience',
+    orientation: 'vertical',
+    label: 'Work experience',
+    withAsterisk: true
+  }
+];
+
+export const thirdMultiList = [
+  {
+    name: 'learn',
+    data: learnList,
+    label: 'How did you learn to code and programming before?',
+    placeholder: 'Pick here',
+    description: 'You can choose more than 1',
+    withAsterisk: true
+  },
+  {
+    name: 'sourcesInfo',
+    data: sourcesInfoList,
+    label: 'Where did you know about this bootcamp?',
+    placeholder: 'Pick here',
+    description: 'You can choose more than 1',
+    withAsterisk: true
+  }
+];
+
+export const thirdTextareaList = [
+  {
+    name: 'motivation',
+    label: "What's your motivation to joining in this bootcamp?",
+    description: 'Explain briefly and clearly',
+    withAsterisk: true
+  },
+  {
+    name: 'question',
+    label: 'Do you have any question or feedback',
+    description: 'Must be related to this bootcamp',
+    withAsterisk: true
   }
 ];
