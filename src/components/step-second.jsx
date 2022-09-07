@@ -3,7 +3,7 @@ import { Button, Container, Group, Radio, TextInput, Title } from '@mantine/core
 import { DatePicker } from '@mantine/dates';
 import { IoCalendarNumber } from 'react-icons/io5';
 
-import { useFormStore, useStepStore } from '@/stores';
+import { useFormStore, useStepStore } from '@/store';
 import { secondTextList } from '@/utils';
 import { StepperLayout } from '@/components';
 

@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { Button, Container, TextInput, Title } from '@mantine/core';
 
-import { useFormStore, useStepStore } from '@/stores';
+import { useFormStore, useStepStore } from '@/store';
 import { firstTextList } from '@/utils';
 import { StepperLayout } from '@/components';
 

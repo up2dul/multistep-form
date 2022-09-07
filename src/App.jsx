@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Container, Stepper } from '@mantine/core';
 
-import { useStepStore } from '@/stores';
+import { useStepStore } from '@/store';
 import { StepCompleted, StepFirst, StepSecond, StepThird } from '@/components';
 
 function App() {
