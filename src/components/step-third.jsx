@@ -27,12 +27,17 @@ export function StepThird() {
 
   const { thirdForm, setThirdForm } = useFormStore((state) => state);
 
-  const { register, handleSubmit } = useForm({ defaultValues: thirdForm || {} });
+  const { register, handleSubmit, getValues } = useForm({ defaultValues: thirdForm || {} });
 
   const onSubmit = (data) => {
     console.log('third:', data);
     setThirdForm(data);
     setNextStep();
+  };
+
+  const handleBlur = () => {
+    const data = getValues();
+    setThirdForm(data);
   };
 
   return (
@@ -41,7 +46,7 @@ export function StepThird() {
         The last one, <br /> 🧑 Tell us more about you
       </Title>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onBlur={handleBlur} onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing='xl'>
           <Radio.Group {...radioList[0]}>
             {levelList.map((level, idx) => (
