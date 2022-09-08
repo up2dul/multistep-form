@@ -1,76 +1,87 @@
-import { Container, FileInput, MultiSelect, Radio, Textarea, Title } from '@mantine/core';
+import { useForm } from 'react-hook-form';
+import {
+  Button,
+  Container,
+  FileInput,
+  MultiSelect,
+  Radio,
+  Stack,
+  Textarea,
+  Title
+} from '@mantine/core';
+
 import {
   levelList,
   stackList,
   experienceList,
-  learnList,
-  sourcesInfoList
-} from '@/utils/input-options';
-import { IoFileTray } from 'react-icons/io5';
+  thirdRadioList as radioList,
+  thirdMultiList as multiList,
+  thirdTextareaList as textareaList,
+  thirdFileProps
+} from '@/utils';
+import { StepperLayout } from '@/components';
+import { useFormStore, useStepStore } from '@/store';
 
 export function StepThird() {
+  const { setPrevStep, setNextStep } = useStepStore((state) => state);
+
+  const { thirdForm, setThirdForm } = useFormStore((state) => state);
+
+  const { register, handleSubmit } = useForm({ defaultValues: thirdForm || {} });
+
+  const onSubmit = (data) => {
+    console.log('third:', data);
+    setThirdForm(data);
+    setNextStep();
+  };
+
   return (
     <Container mt={30} size='xs'>
       <Title order={2} mb={25}>
         The last one, <br /> 🧑 Tell us more about you
       </Title>
-      <Radio.Group
-        mb={25}
-        orientation='vertical'
-        label='Expertise level in web development'
-        withAsterisk>
-        {levelList.map((level, idx) => (
-          <Radio key={idx} value={level} label={level} />
-        ))}
-      </Radio.Group>
-      <Radio.Group
-        mb={25}
-        orientation='vertical'
-        label='Focus stack on web development'
-        withAsterisk>
-        {stackList.map((stack, idx) => (
-          <Radio key={idx} value={stack} label={stack} />
-        ))}
-      </Radio.Group>
-      <Radio.Group mb={25} orientation='vertical' label='Work experience' withAsterisk>
-        {experienceList.map((experience, idx) => (
-          <Radio key={idx} value={experience} label={experience} />
-        ))}
-      </Radio.Group>
-      <FileInput
-        mb={25}
-        icon={<IoFileTray />}
-        label='Upload your Resume/CV'
-        placeholder='Upload here'
-        description='Optional. Can be in PDF or any other format file'
-      />
-      <MultiSelect
-        mb={25}
-        data={learnList}
-        label='How did you learn to code and programming before?'
-        placeholder='Pick here'
-        description='You can choose more than 1'
-        withAsterisk
-      />
-      <MultiSelect
-        mb={25}
-        data={sourcesInfoList}
-        label='Where did you know about this bootcamp?'
-        placeholder='Pick here'
-        description='You can choose more than 1'
-        withAsterisk
-      />
-      <Textarea
-        mb={25}
-        label="What's your motivation to joining in this bootcamp?"
-        description='Explain briefly and clearly'
-        withAsterisk
-      />
-      <Textarea
-        mb={25}
-        label='Do you have any question or feedback?'
-        description='Must be related to this bootcamp'
-      />
+
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Stack spacing='xl'>
+          <Radio.Group {...radioList[0]}>
+            {levelList.map((level, idx) => (
+              <Radio key={idx} value={level} label={level} {...register(radioList[0].name)} />
+            ))}
+          </Radio.Group>
+          <Radio.Group {...radioList[1]}>
+            {stackList.map((stack, idx) => (
+              <Radio key={idx} value={stack} label={stack} {...register(radioList[1].name)} />
+            ))}
+          </Radio.Group>
+          <Radio.Group {...radioList[2]}>
+            {experienceList.map((experience, idx) => (
+              <Radio
+                key={idx}
+                value={experience}
+                label={experience}
+                {...register(radioList[2].name)}
+              />
+            ))}
+          </Radio.Group>
+
+          <FileInput {...thirdFileProps} {...register('resume')} />
+
+          {multiList.map((props, idx) => (
+            <MultiSelect key={idx} {...props} {...register(props.name)} />
+          ))}
+
+          {textareaList.map((props, idx) => (
+            <Textarea key={idx} {...props} {...register(props.name)} />
+          ))}
+        </Stack>
+
+        <StepperLayout>
+          <Button variant='default' onClick={setPrevStep}>
+            Back
+          </Button>
+          <Button type='submit'>Next</Button>
+        </StepperLayout>
+      </form>
     </Container>
   );
 }
