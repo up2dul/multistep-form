@@ -1,11 +1,14 @@
 import {
+  IoCalendarNumber,
   IoCall,
+  IoFileTray,
   IoGlobeOutline,
   IoHome,
   IoLogoGithub,
   IoLogoLinkedin,
   IoMail
 } from 'react-icons/io5';
+
 import { learnList, sourcesInfoList } from '@/utils';
 
 export const firstTextList = [
@@ -21,6 +24,15 @@ export const firstTextList = [
     placeholder: 'e.g. Hidayat'
   }
 ];
+
+export const secondDateProps = {
+  name: 'birthDate',
+  icon: <IoCalendarNumber />,
+  label: 'Birth date',
+  placeholder: 'Pick date',
+  dropdownType: 'modal',
+  withAsterisk: true
+};
 
 export const secondTextList = [
   {
@@ -87,6 +99,13 @@ export const thirdRadioList = [
     withAsterisk: true
   }
 ];
+
+export const thirdFileProps = {
+  icon: <IoFileTray />,
+  label: 'Upload your Resume/CV',
+  placeholder: 'Upload here',
+  description: 'Optional. Can be in PDF or any other format file'
+};
 
 export const thirdMultiList = [
   {

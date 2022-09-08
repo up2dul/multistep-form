@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { Button, Container, TextInput, Title } from '@mantine/core';
+import { Button, Container, Stack, TextInput, Title } from '@mantine/core';
 
 import { useFormStore, useStepStore } from '@/store';
 import { firstTextList } from '@/utils';
@@ -13,6 +13,7 @@ export function StepFirst() {
   const { register, handleSubmit } = useForm({ defaultValues: firstForm || {} });
 
   const onSubmit = (data) => {
+    console.log('first:', data);
     setFirstForm(data);
     setNextStep();
   };
@@ -22,10 +23,14 @@ export function StepFirst() {
       <Title order={2} mb={25}>
         👀 What&apos;s your name?
       </Title>
+
       <form onSubmit={handleSubmit(onSubmit)}>
-        {firstTextList.map((props, idx) => (
-          <TextInput key={idx} mb={25} {...props} {...register(props.name)} />
-        ))}
+        <Stack spacing='xl'>
+          {firstTextList.map((props, idx) => (
+            <TextInput key={idx} {...props} {...register(props.name)} />
+          ))}
+        </Stack>
+
         <StepperLayout>
           <Button type='submit'>Next</Button>
         </StepperLayout>

@@ -1,22 +1,37 @@
 import { useForm } from 'react-hook-form';
-import { Button, Container, Group, Radio, TextInput, Title } from '@mantine/core';
+import { Button, Container, Group, Radio, Stack, TextInput, Title } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
-import { IoCalendarNumber } from 'react-icons/io5';
 
 import { useFormStore, useStepStore } from '@/store';
-import { secondTextList } from '@/utils';
+import { secondDateProps, secondTextList } from '@/utils';
 import { StepperLayout } from '@/components';
 
-export function StepSecond() {
-  const { register, handleSubmit } = useForm();
+let count = 0;
 
+export function StepSecond() {
   const { setPrevStep, setNextStep } = useStepStore((state) => state);
 
-  const { firstName } = useFormStore((state) => state.firstForm);
+  console.log('rendered:', ++count);
+
+  const {
+    firstForm: { firstName },
+    secondForm,
+    setSecondForm
+  } = useFormStore((state) => state);
+
+  const { register, handleSubmit, getValues } = useForm({ defaultValues: secondForm || {} });
+
+  const dateRegister = register('birthDate');
 
   const onSubmit = (data) => {
-    console.log(data);
+    console.log('second:', data);
+    setSecondForm(data);
     setNextStep();
+  };
+
+  const handleBlur = () => {
+    const data = getValues();
+    setSecondForm(data);
   };
 
   return (
@@ -24,24 +39,22 @@ export function StepSecond() {
       <Title order={2} mb={25}>
         👋 Hi {firstName}, <br /> Let us know about your info and contact
       </Title>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Group mb={25} grow>
-          <Radio.Group label='Gender' orientation='vertical' withAsterisk {...register('gender')}>
-            <Radio value='male' label='Male' />
-            <Radio value='female' label='Female' />
-          </Radio.Group>
-          <DatePicker
-            icon={<IoCalendarNumber />}
-            label='Birth date'
-            placeholder='Pick date'
-            dropdownType='modal'
-            withAsterisk
-            {...register('birthDate')}
-          />
-        </Group>
-        {secondTextList.map((props, idx) => (
-          <TextInput key={idx} mb={25} {...props} {...register(props.name)} />
-        ))}
+
+      <form onBlur={handleBlur} onSubmit={handleSubmit(onSubmit)}>
+        <Stack spacing='xl'>
+          <Group grow>
+            <Radio.Group label='Gender' orientation='vertical' withAsterisk>
+              <Radio value='male' label='Male' {...register('gender')} />
+              <Radio value='female' label='Female' {...register('gender')} />
+            </Radio.Group>
+            <DatePicker {...secondDateProps} onBlur={dateRegister.onBlur} ref={dateRegister.ref} />
+          </Group>
+
+          {secondTextList.map((props, idx) => (
+            <TextInput key={idx} {...props} {...register(props.name)} />
+          ))}
+        </Stack>
+
         <StepperLayout>
           <Button variant='default' onClick={setPrevStep}>
             Back
