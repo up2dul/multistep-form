@@ -99,7 +99,7 @@ export const thirdRadioList = [
   }
 ];
 
-export const thirdFileProps = {
+export const resumeFileProps = {
   icon: <IoFileTray />,
   label: 'Upload your Resume/CV',
   placeholder: 'Upload here',

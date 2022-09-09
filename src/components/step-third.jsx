@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import {
   Button,
   Container,
@@ -17,7 +17,7 @@ import {
   thirdRadioList as radioList,
   thirdMultiList as multiList,
   thirdTextareaList as textareaList,
-  thirdFileProps
+  resumeFileProps
 } from '@/utils';
 import { StepperLayout } from '@/components';
 import { useFormStore, useStepStore } from '@/store';
@@ -27,7 +27,9 @@ export function StepThird() {
 
   const { thirdForm, setThirdForm } = useFormStore((state) => state);
 
-  const { register, handleSubmit, getValues } = useForm({ defaultValues: thirdForm || {} });
+  const { register, handleSubmit, getValues, control } = useForm({
+    defaultValues: thirdForm || {}
+  });
 
   const onSubmit = (data) => {
     console.log('third:', data);
@@ -69,14 +71,28 @@ export function StepThird() {
             ))}
           </Radio.Group>
 
-          <FileInput {...thirdFileProps} {...register('resume')} />
+          <Controller
+            name='resume'
+            control={control}
+            render={({ field }) => <FileInput {...resumeFileProps} {...field} />}
+          />
 
           {multiList.map((props, idx) => (
-            <MultiSelect key={idx} {...props} {...register(props.name)} />
+            <Controller
+              key={idx}
+              name={props.name}
+              control={control}
+              render={({ field }) => <MultiSelect key={idx} {...props} {...field} />}
+            />
           ))}
 
           {textareaList.map((props, idx) => (
-            <Textarea key={idx} {...props} {...register(props.name)} />
+            <Controller
+              key={idx}
+              name={props.name}
+              control={control}
+              render={({ field }) => <Textarea key={idx} {...props} {...field} />}
+            />
           ))}
         </Stack>
 
