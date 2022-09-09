@@ -1,17 +1,13 @@
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { Button, Container, Group, Radio, Stack, TextInput, Title } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
 
 import { useFormStore, useStepStore } from '@/store';
-import { secondDateProps, secondTextList } from '@/utils';
+import { birthDateProps, secondTextList } from '@/utils';
 import { StepperLayout } from '@/components';
-
-let count = 0;
 
 export function StepSecond() {
   const { setPrevStep, setNextStep } = useStepStore((state) => state);
-
-  console.log('rendered:', ++count);
 
   const {
     firstForm: { firstName },
@@ -19,9 +15,9 @@ export function StepSecond() {
     setSecondForm
   } = useFormStore((state) => state);
 
-  const { register, handleSubmit, getValues } = useForm({ defaultValues: secondForm || {} });
-
-  const dateRegister = register('birthDate');
+  const { register, handleSubmit, getValues, control } = useForm({
+    defaultValues: secondForm || {}
+  });
 
   const onSubmit = (data) => {
     console.log('second:', data);
@@ -47,7 +43,11 @@ export function StepSecond() {
               <Radio value='male' label='Male' {...register('gender')} />
               <Radio value='female' label='Female' {...register('gender')} />
             </Radio.Group>
-            <DatePicker {...secondDateProps} onBlur={dateRegister.onBlur} ref={dateRegister.ref} />
+            <Controller
+              name='dateBirth'
+              control={control}
+              render={({ field }) => <DatePicker {...birthDateProps} {...field} />}
+            />
           </Group>
 
           {secondTextList.map((props, idx) => (

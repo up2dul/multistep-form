@@ -25,8 +25,7 @@ export const firstTextList = [
   }
 ];
 
-export const secondDateProps = {
-  name: 'birthDate',
+export const birthDateProps = {
   icon: <IoCalendarNumber />,
   label: 'Birth date',
   placeholder: 'Pick date',
