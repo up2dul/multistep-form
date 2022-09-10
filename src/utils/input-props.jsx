@@ -45,7 +45,7 @@ export const secondTextList = [
     name: 'phoneNumber',
     icon: <IoCall />,
     label: 'Phone number',
-    placeholder: 'e.g. +62 888-1234-1234',
+    placeholder: 'e.g. 0888123123 or +6281234123',
     description: 'Preferably that is used for Telegram/WhatsApp',
     withAsterisk: true
   },
@@ -68,13 +68,15 @@ export const secondTextList = [
     name: 'github',
     icon: <IoLogoGithub />,
     label: 'Github URL',
-    placeholder: 'e.g. https://github.com/guntur'
+    placeholder: 'e.g. https://github.com/guntur',
+    withAsterisk: true
   },
   {
     name: 'linkedin',
     icon: <IoLogoLinkedin />,
     label: 'Linkedin URL',
-    placeholder: 'e.g. https://linkedin.com/in/guntur'
+    placeholder: 'e.g. https://linkedin.com/in/guntur',
+    withAsterisk: true
   }
 ];
 
