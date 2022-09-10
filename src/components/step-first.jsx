@@ -1,8 +1,9 @@
 import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Container, Stack, TextInput, Title } from '@mantine/core';
 
 import { useFormStore, useStepStore } from '@/store';
-import { firstTextList } from '@/utils';
+import { firstSchema, firstTextList } from '@/utils';
 import { StepperLayout } from '@/components';
 
 export function StepFirst() {
@@ -10,10 +11,17 @@ export function StepFirst() {
 
   const { firstForm, setFirstForm } = useFormStore((state) => state);
 
-  const { register, handleSubmit } = useForm({ defaultValues: firstForm || {} });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    defaultValues: firstForm || {},
+    resolver: yupResolver(firstSchema)
+  });
 
   const onSubmit = (data) => {
-    console.log('first:', data);
+    console.log('first step:', data);
     setFirstForm(data);
     setNextStep();
   };
@@ -27,7 +35,12 @@ export function StepFirst() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing='xl'>
           {firstTextList.map((props, idx) => (
-            <TextInput key={idx} {...props} {...register(props.name)} />
+            <TextInput
+              key={idx}
+              {...props}
+              {...register(props.name)}
+              error={errors[props.name]?.message}
+            />
           ))}
         </Stack>
 
