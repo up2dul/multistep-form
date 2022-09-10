@@ -1,9 +1,10 @@
 import { Controller, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Container, Group, Radio, Stack, TextInput, Title } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
 
 import { useFormStore, useStepStore } from '@/store';
-import { birthDateProps, secondTextList } from '@/utils';
+import { birthDateProps, secondSchema, secondTextList } from '@/utils';
 import { StepperLayout } from '@/components';
 
 export function StepSecond() {
@@ -15,12 +16,19 @@ export function StepSecond() {
     setSecondForm
   } = useFormStore((state) => state);
 
-  const { register, handleSubmit, getValues, control } = useForm({
-    defaultValues: secondForm || {}
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    formState: { errors },
+    control
+  } = useForm({
+    defaultValues: secondForm || {},
+    resolver: yupResolver(secondSchema)
   });
 
   const onSubmit = (data) => {
-    console.log('second:', data);
+    console.log('second step:', data);
     setSecondForm(data);
     setNextStep();
   };
@@ -39,19 +47,30 @@ export function StepSecond() {
       <form onBlur={handleBlur} onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing='xl'>
           <Group grow>
-            <Radio.Group label='Gender' orientation='vertical' withAsterisk>
+            <Radio.Group
+              label='Gender'
+              orientation='vertical'
+              error={errors.gender?.message}
+              withAsterisk>
               <Radio value='male' label='Male' {...register('gender')} />
               <Radio value='female' label='Female' {...register('gender')} />
             </Radio.Group>
             <Controller
               name='dateBirth'
               control={control}
-              render={({ field }) => <DatePicker {...birthDateProps} {...field} />}
+              render={({ field }) => (
+                <DatePicker {...birthDateProps} {...field} error={errors.dateBirth?.message} />
+              )}
             />
           </Group>
 
           {secondTextList.map((props, idx) => (
-            <TextInput key={idx} {...props} {...register(props.name)} />
+            <TextInput
+              key={idx}
+              {...props}
+              {...register(props.name)}
+              error={errors[props.name]?.message}
+            />
           ))}
         </Stack>
 
