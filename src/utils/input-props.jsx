@@ -138,7 +138,6 @@ export const thirdTextareaProps = [
   {
     name: 'question',
     label: 'Do you have any question or feedback',
-    description: 'Must be related to this bootcamp',
-    withAsterisk: true
+    description: 'Must be related to this bootcamp'
   }
 ];
