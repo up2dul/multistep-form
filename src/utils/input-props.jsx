@@ -105,7 +105,8 @@ export const resumeFileProps = {
   icon: <IoFileTray />,
   label: 'Upload your Resume/CV',
   placeholder: 'Upload here',
-  description: 'Optional. Can be in PDF or any other format file'
+  description: 'Optional. You can only upload .pdf file, and should not exceed 10mb',
+  accept: 'application/pdf'
 };
 
 export const thirdMultiProps = [
