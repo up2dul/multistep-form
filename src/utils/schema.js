@@ -19,3 +19,14 @@ export const secondSchema = Yup.object({
   github: Yup.string().url('Must be a valid URL').required('Enter your Github URL profile'),
   linkedin: Yup.string().url('Must be a valid URL').required('Enter your Linkedin URL profile')
 });
+
+export const thirdSchema = Yup.object({
+  level: Yup.string().required('Please choose one').nullable(),
+  stack: Yup.string().required('Please choose one').nullable(),
+  experience: Yup.string().required('Please choose one').nullable(),
+  resume: Yup.mixed(),
+  learn: Yup.array().required('Select at least one'),
+  sourcesInfo: Yup.array().required('Select at least one'),
+  motivation: Yup.string().required('Enter your motivation on joining this bootcamp'),
+  question: Yup.string()
+});
