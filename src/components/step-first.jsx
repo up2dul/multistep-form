@@ -3,7 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Container, Stack, TextInput, Title } from '@mantine/core';
 
 import { useFormStore, useStepStore } from '@/store';
-import { firstSchema, firstTextList } from '@/utils';
+import { firstSchema, firstTextProps } from '@/utils';
 import { StepperLayout } from '@/components';
 
 export function StepFirst() {
@@ -34,7 +34,7 @@ export function StepFirst() {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing='xl'>
-          {firstTextList.map((props, idx) => (
+          {firstTextProps.map((props, idx) => (
             <TextInput
               key={idx}
               {...props}

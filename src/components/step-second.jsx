@@ -4,7 +4,7 @@ import { Button, Container, Group, Radio, Stack, TextInput, Title } from '@manti
 import { DatePicker } from '@mantine/dates';
 
 import { useFormStore, useStepStore } from '@/store';
-import { birthDateProps, secondSchema, secondTextList } from '@/utils';
+import { secondSchema, birthDateProps, secondTextProps } from '@/utils';
 import { StepperLayout } from '@/components';
 
 export function StepSecond() {
@@ -64,7 +64,7 @@ export function StepSecond() {
             />
           </Group>
 
-          {secondTextList.map((props, idx) => (
+          {secondTextProps.map((props, idx) => (
             <TextInput
               key={idx}
               {...props}

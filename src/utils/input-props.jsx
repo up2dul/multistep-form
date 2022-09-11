@@ -11,7 +11,7 @@ import {
 
 import { learnList, sourcesInfoList } from '@/utils';
 
-export const firstTextList = [
+export const firstTextProps = [
   {
     name: 'firstName',
     label: 'First name',
@@ -33,7 +33,7 @@ export const birthDateProps = {
   withAsterisk: true
 };
 
-export const secondTextList = [
+export const secondTextProps = [
   {
     name: 'cityCountry',
     icon: <IoHome />,
@@ -80,7 +80,7 @@ export const secondTextList = [
   }
 ];
 
-export const thirdRadioList = [
+export const thirdRadioProps = [
   {
     name: 'level',
     orientation: 'vertical',
@@ -108,7 +108,7 @@ export const resumeFileProps = {
   description: 'Optional. Can be in PDF or any other format file'
 };
 
-export const thirdMultiList = [
+export const thirdMultiProps = [
   {
     name: 'learn',
     data: learnList,
@@ -127,7 +127,7 @@ export const thirdMultiList = [
   }
 ];
 
-export const thirdTextareaList = [
+export const thirdTextareaProps = [
   {
     name: 'motivation',
     label: "What's your motivation to joining in this bootcamp?",
