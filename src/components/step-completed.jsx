@@ -6,6 +6,8 @@ import { useStepStore } from '@/store';
 export function StepCompleted() {
   const { setPrevStep } = useStepStore((state) => state);
 
+  const handleSubmit = () => location.reload();
+
   return (
     <Container mt={30} size='s'>
       <Title order={2} mb={15}>
@@ -21,7 +23,7 @@ export function StepCompleted() {
         <Button variant='default' onClick={setPrevStep}>
           Back
         </Button>
-        <Button type='submit'>Submit</Button>
+        <Button onClick={handleSubmit}>Submit</Button>
       </StepperLayout>
     </Container>
   );
